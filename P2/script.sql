@@ -67,3 +67,16 @@ $$;
 -- Dentre os alunos que têm salário maior que 410, quantos costumam se preparar com
 -- frequência (regularmente) para os exames? Escreva um stored procedure que exibe esse
 -- valor.
+
+CREATE OR REPLACE PROCEDURE estudantes_salario()
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    n_alunos INT;
+BEGIN
+    SELECT count(*) FROM estudantes WHERE salary = 5 AND prep_exam = 2 INTO n_alunos;
+    RAISE NOTICE 'Estudantes com salário maior que 410 e que se preparam regurlarmente durante o semestre: %',n_alunos;
+END;
+$$;
+
+call estudantes_salario()
